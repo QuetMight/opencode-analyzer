@@ -1,4 +1,5 @@
 import type { Hooks } from "@opencode-ai/plugin";
+import type { Event } from "@opencode-ai/sdk";
 
 export type HooksHandlers = {
     [K in keyof Hooks as Hooks[K] extends ((...args: any[]) => any) | undefined ? K : never]: NonNullable<Hooks[K]>;
@@ -15,3 +16,9 @@ export type HandlerInput<K extends HookNames> = ExtractHandlerInput<
 export type HandlerOutput<K extends HookNames> = ExtractHandlerOutput<
   HooksHandlers[K]
 >;
+
+export type EventType = Event["type"];
+
+export type EventTypeMap = {
+    [K in EventType]: Extract<Event, { type: K }>;
+}

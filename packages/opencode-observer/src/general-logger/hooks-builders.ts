@@ -5,35 +5,35 @@ export function getHookContentBuilder<K extends HookNames>(hookName: K): HookCon
     return HookContentBuilderMap[hookName];
 }
 
-const eventContentBuilder: HookContentBuilder<"event"> = async (input) => { };
+const eventContentBuilder: HookContentBuilder<"event"> = async (input) => { return {}; };
 
-const configContentBuilder: HookContentBuilder<"config"> = async (input) => { };
+const configContentBuilder: HookContentBuilder<"config"> = async (input) => { return {}; };
 
-const chatMessageContentBuilder: HookContentBuilder<"chat.message"> = async (input, output) => { };
+const chatMessageContentBuilder: HookContentBuilder<"chat.message"> = async (input, output) => { return {}; };
 
-const chatParamsContentBuilder: HookContentBuilder<"chat.params"> = async (input, output) => { };
+const chatParamsContentBuilder: HookContentBuilder<"chat.params"> = async (input, output) => { return {}; };
 
-const chatHeadersContentBuilder: HookContentBuilder<"chat.headers"> = async (input, output) => { };
+const chatHeadersContentBuilder: HookContentBuilder<"chat.headers"> = async (input, output) => { return {}; };
 
-const permissionAskContentBuilder: HookContentBuilder<"permission.ask"> = async (input, output) => { };
+const permissionAskContentBuilder: HookContentBuilder<"permission.ask"> = async (input, output) => { return {}; };
 
-const commandExecuteBeforeContentBuilder: HookContentBuilder<"command.execute.before"> = async (input, output) => { };
+const commandExecuteBeforeContentBuilder: HookContentBuilder<"command.execute.before"> = async (input, output) => { return {}; };
 
-const toolExecuteBeforeContentBuilder: HookContentBuilder<"tool.execute.before"> = async (input, output) => { };
+const toolExecuteBeforeContentBuilder: HookContentBuilder<"tool.execute.before"> = async (input, output) => { return {}; };
 
-const toolExecuteAfterContentBuilder: HookContentBuilder<"tool.execute.after"> = async (input, output) => { };
+const toolExecuteAfterContentBuilder: HookContentBuilder<"tool.execute.after"> = async (input, output) => { return {}; };
 
-const shellEnvContentBuilder: HookContentBuilder<"shell.env"> = async (input, output) => { };
+const shellEnvContentBuilder: HookContentBuilder<"shell.env"> = async (input, output) => { return {}; };
 
-const chatMessagesTransformContentBuilder: HookContentBuilder<"experimental.chat.messages.transform"> = async (input, output) => { };
+const chatMessagesTransformContentBuilder: HookContentBuilder<"experimental.chat.messages.transform"> = async (input, output) => { return {}; };
 
-const chatSystemTransformContentBuilder: HookContentBuilder<"experimental.chat.system.transform"> = async (input, output) => { };
+const chatSystemTransformContentBuilder: HookContentBuilder<"experimental.chat.system.transform"> = async (input, output) => { return {}; };
 
-const sessionCompactingContentBuilder: HookContentBuilder<"experimental.session.compacting"> = async (input, output) => { };
+const sessionCompactingContentBuilder: HookContentBuilder<"experimental.session.compacting"> = async (input, output) => { return {}; };
 
-const textCompleteContentBuilder: HookContentBuilder<"experimental.text.complete"> = async (input, output) => { };
+const textCompleteContentBuilder: HookContentBuilder<"experimental.text.complete"> = async (input, output) => { return {}; };
 
-const toolDefinitionContentBuilder: HookContentBuilder<"tool.definition"> = async (input, output) => { };
+const toolDefinitionContentBuilder: HookContentBuilder<"tool.definition"> = async (input, output) => { return {}; };
 
 const HookContentBuilderMap: { [K in HookNames]: HookContentBuilder<K> | null } = {
     event: eventContentBuilder,
