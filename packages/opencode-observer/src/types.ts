@@ -5,15 +5,16 @@ export type HooksHandlers = {
     [K in keyof Hooks as Hooks[K] extends ((...args: any[]) => any) | undefined ? K : never]: NonNullable<Hooks[K]>;
 }
 
-type ExtractHandlerInput<T> = T extends (input: infer I, output: infer _O) => any ? I : never;
-type ExtractHandlerOutput<T> = T extends (input: infer _I, output: infer O) => any ? O : never;
+type ExtractHandlerInput<T> = T extends (input: infer I, output: any) => Promise<void> ? I : never;
+type ExtractHandlerOutput<T> = T extends (input: any, output: infer O) => Promise<void> ? O : never;
 
 export type HookNames = keyof HooksHandlers;
+export type PureHookNames = Exclude<HookNames, "event">;
 
-export type HandlerInput<K extends HookNames> = ExtractHandlerInput<
+export type HookInput<K extends HookNames> = ExtractHandlerInput<
   HooksHandlers[K]
 >;
-export type HandlerOutput<K extends HookNames> = ExtractHandlerOutput<
+export type HookOutput<K extends HookNames> = ExtractHandlerOutput<
   HooksHandlers[K]
 >;
 

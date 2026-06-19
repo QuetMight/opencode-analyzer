@@ -1,8 +1,8 @@
-import type { EventType, EventTypeMap, HandlerInput, HandlerOutput, HookNames } from "../types";
+import type { EventType, EventTypeMap, HookInput, HookOutput, HookNames } from "../types";
 
 export type LogLevel = "debug" | "info" | "warn" | "error";
 
-const LogLevelValue: Record<LogLevel, number> = {
+const LOG_LEVEL_VALUE: Record<LogLevel, number> = {
     debug: 0,
     info: 1,
     warn: 2,
@@ -10,11 +10,22 @@ const LogLevelValue: Record<LogLevel, number> = {
 };
 
 export function isLogLevelSatisfied(currentLevel: LogLevel, targetLevel: LogLevel): boolean {
-    return LogLevelValue[currentLevel] <= LogLevelValue[targetLevel];
+    return LOG_LEVEL_VALUE[currentLevel] <= LOG_LEVEL_VALUE[targetLevel];
 }
 
-export type HookContentBuilderOutput = Record<string, any>;
+export interface HookContentBuilderOutput {
+    hook: string;
+    sessionID: string;
+    [key: string]: any;
+}
 
-export type HookContentBuilder<K extends HookNames> = (input: HandlerInput<K>, output: HandlerOutput<K>) => Promise<HookContentBuilderOutput>;
+export type HookContentBuilder<K extends HookNames> = (
+    input: HookInput<K>,
+    output: HookOutput<K>,
+    logLevel: LogLevel
+) => HookContentBuilderOutput | null;
 
-export type EventContentBuilder<K extends EventType> = (event: EventTypeMap[K], logLevel: LogLevel) => Promise<HookContentBuilderOutput>;
+export type EventContentBuilder<K extends EventType> = (
+    event: EventTypeMap[K],
+    logLevel: LogLevel
+) => HookContentBuilderOutput | null;
